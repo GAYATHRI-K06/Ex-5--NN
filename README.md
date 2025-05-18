@@ -1,7 +1,7 @@
-H3>ENTER YOUR NAME:GAYATHRI K</H3>
-<H3>ENTER YOUR REGISTER NO.212223230061</H3>
+<H3>ENTER YOUR NAME: GAYATHRI K R</H3>
+<H3>ENTER YOUR REGISTER NO. 212223230061</H3>
 <H3>EX. NO.5</H3>
-<H3>DATE:13.05.2025</H3>
+<H3>DATE:21-04-2025</H3>
 <H1 ALIGN =CENTER>Implementation of XOR  using RBF</H1>
 <H3>Aim:</H3>
 To implement a XOR gate classification using Radial Basis Function  Neural Network.
@@ -20,9 +20,6 @@ A Neural network with input layer, one hidden layer with Radial Basis function a
 </P>
 
 
-
-
-
 <H3>ALGORITHM:</H3>
 Step 1: Initialize the input  vector for you bit binary data<Br>
 Step 2: Initialize the centers for two hidden neurons in hidden layer<Br>
@@ -34,18 +31,20 @@ Step 6: Test the network for accuracy<br>
 Step 7: Plot the Input space and Hidden space of RBF NN for XOR classification.
 
 <H3>PROGRAM:</H3>
-IMPORT THE LIBRARIES:
-```````
+
+### IMPORT THE LIBRARIES:
+```python
 import numpy as np
 import matplotlib.pyplot as plt
-````````
-Gaussian RBF (Radial Basis Function) kernel
-``````````````
+```
+### Gaussian RBF (Radial Basis Function) kernel
+```python
 def gaussian_rbf(x, landmark, gamma=1):
     return np.exp(-gamma * np.linalg.norm(x - landmark)**2)
-````````````
-Main function for training and plotting:
-````````````
+```
+
+### Main function for training and plotting
+```python
 def end_to_end(X1, X2, ys, mu1, mu2):
     # Apply RBF transformation
     from_1 = [gaussian_rbf(i, mu1) for i in zip(X1, X2)]
@@ -95,18 +94,19 @@ def end_to_end(X1, X2, ys, mu1, mu2):
     print(ys)
     print(f"Weights: {W}")
 
-    return W    
-````````````````````
-Prediction function
-``````````````````````
+    return W
+```
+
+### Prediction function
+```python
 def predict_matrix(point, weights):
     gaussian_rbf_0 = gaussian_rbf(np.array(point), mu1)
     gaussian_rbf_1 = gaussian_rbf(np.array(point), mu2)
     A = np.array([gaussian_rbf_0, gaussian_rbf_1, 1])
     return np.round(A.dot(weights))
-`````````````````
-Points for testing
-```````````
+```
+### Points for testing
+```python
 x1 = np.array([0, 0, 1, 1])
 x2 = np.array([0, 1, 0, 1])
 ys = np.array([0, 1, 1, 0])
@@ -114,21 +114,25 @@ ys = np.array([0, 1, 1, 0])
 # Centers for the RBF kernel
 mu1 = np.array([0, 1])
 mu2 = np.array([1, 0])
-``````````````
-Run end_to_end to compute weights
-`````````
+```
+
+### Run end_to_end to compute weights
+```python
 w = end_to_end(x1, x2, ys, mu1, mu2)
-```````````
-Testing
-````````````
+```
+
+### Testing
+```python
 print(f"Input:{np.array([0, 0])}, Predicted: {predict_matrix(np.array([0, 0]), w)}")
 print(f"Input:{np.array([0, 1])}, Predicted: {predict_matrix(np.array([0, 1]), w)}")
 print(f"Input:{np.array([1, 0])}, Predicted: {predict_matrix(np.array([1, 0]), w)}")
-print(f"Input:{np.array([1, 1])}, Predicted: {predict_matrix(np.array([1, 1]), w)}")
-`````````````````
-<H3>OUTPUT:</H3>
-![Screenshot 2025-05-12 143822](https://github.com/user-attachments/assets/575642a4-138a-41bc-8b2b-371208dd6e1d)
+print(f"Input:{np.array([1, 1])}, Predicted: {predict_matrix(np.array([1, 1]), w)}")           
+```
 
+
+<H3>OUTPUT:</H3>
+
+![alt text](image.png)
 
 <H3>Result:</H3>
 Thus , a Radial Basis Function Neural Network is implemented to classify XOR data.
